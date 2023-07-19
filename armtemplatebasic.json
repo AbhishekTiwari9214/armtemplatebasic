@@ -51,7 +51,7 @@
     "variables": {
       "appServicePlanPortalName": "[format('AppServicePlan-{0}', parameters('webAppName'))]"
     },
-    "resources": [
+    "resources": {
       {
         "type": "Microsoft.Web/serverfarms",
         "apiVersion": "2021-02-01",
@@ -82,9 +82,9 @@
         "identity": {
           "type": "SystemAssigned"
         },
-        "dependsOn": [
+        "dependsOn": {
           "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]"
-        ]
+        }
       },
       {
         "condition": "[contains(parameters('repoUrl'), 'http')]",
@@ -96,9 +96,9 @@
           "branch": "master",
           "isManualIntegration": true
         },
-        "dependsOn": [
+        "dependsOn": {
           "[resourceId('Microsoft.Web/sites', parameters('webAppName'))]"
-        ]
+            }
       }
-    ]
+        }
   }
